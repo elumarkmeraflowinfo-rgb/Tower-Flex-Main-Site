@@ -1,0 +1,53 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 8rem 2rem 4rem;
+    color: var(--color-zinc-50);
+    background-color: var(--color-blue);
+    /* Fallback or contextual */
+    /* Context handles the background, but we can enforce text colors here */
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.kicker {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.title {
+    font-family: var(--font-primary);
+    /* Playfair Display via Context */
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+}
+
+.meta {
+    opacity: 0.7;
+    font-family: var(--font-secondary);
+}
+
+.article {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    margin-top: 4rem;
+}
+
+.article p {
+    margin-bottom: 1.5rem;
+}
+
+.dropcap:first-letter {
+    float: left;
+    font-size: 4rem;
+    line-height: 0.8;
+    margin-right: 0.5rem;
+    font-weight: 700;
+}

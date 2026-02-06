@@ -1,0 +1,81 @@
+.container {
+    background: #18181B;
+    color: #FAFAFA;
+    padding: 2rem;
+    border: 1px solid #3F3F46;
+    /* Zinc-700 */
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+    font-family: var(--font-secondary);
+}
+
+.header {
+    border-bottom: 1px solid #3F3F46;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-yellow);
+    /* Industrial Yellow */
+}
+
+.question {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.button {
+    background: transparent;
+    border: 1px solid #52525B;
+    color: white;
+    padding: 1rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--font-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.button:hover {
+    background: var(--color-yellow);
+    color: black;
+    border-color: var(--color-yellow);
+}
+
+.result {
+    text-align: center;
+    padding: 2rem;
+    background: #27272A;
+}
+
+.price {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-yellow);
+    margin: 1rem 0;
+}
+
+.disclaimer {
+    font-size: 0.75rem;
+    opacity: 0.5;
+}
+
+.resetButton {
+    margin-top: 2rem;
+    background: transparent;
+    border: none;
+    color: white;
+    text-decoration: underline;
+    cursor: pointer;
+}
