@@ -3,49 +3,38 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 6rem 2rem 2rem;
-  background-color: var(--color-zinc-50);
-  color: var(--color-zinc-900);
-  transition: background-color 0.8s, color 0.8s;
-}
-
-.heroContent {
-  width: 100%;
-  max-width: 1600px;
-}
-
-.titleWrapper {
-  margin-bottom: 3rem;
+  padding: 8rem 4vw 4rem;
   position: relative;
+  z-index: 10;
+}
+
+.heroSection {
+  margin-bottom: 6rem;
+  max-width: 1200px;
 }
 
 .title {
-  font-size: 12vw;
+  font-size: clamp(4rem, 15vw, 12rem);
+  font-weight: 900;
   line-height: 0.8;
-  font-weight: 700;
-  letter-spacing: -0.05em;
-  mix-blend-mode: difference;
-  color: rgba(24, 24, 27, 0.1);
-  /* Zinc-900 at 10% */
-  pointer-events: none;
-  user-select: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  text-align: center;
-  z-index: 0;
+  margin-bottom: 2rem;
+  color: var(--text-color);
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  max-width: 600px;
+  opacity: 0.6;
+  line-height: 1.6;
+  font-family: var(--font-mono);
+  margin-bottom: 4rem;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  gap: 1rem;
-  position: relative;
-  z-index: 10;
+  gap: 1.5rem;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -54,7 +43,7 @@
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1280px) {
   .grid {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -63,90 +52,101 @@
 .card {
   position: relative;
   height: 60vh;
+  min-height: 400px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 1.5rem;
-  border: 1px solid #E4E4E7;
-  /* Zinc-200 */
-  background-color: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(4px);
-  text-decoration: none;
-  color: inherit;
   overflow: hidden;
-  transition: border-color 0.5s;
+  transition: all 0.5s var(--transition-smooth);
 }
 
 .card:hover {
-  border-color: rgba(24, 24, 27, 0.5);
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--card-color, var(--color-primary));
+  box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.2);
 }
 
-.cardBg {
+.cardBackground {
   position: absolute;
   inset: 0;
-  background-color: currentColor;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3;
+  filter: grayscale(1) contrast(1.2);
+  transition: all 0.7s var(--transition-smooth);
+}
+
+.card:hover .cardBackground {
+  opacity: 1;
+  filter: grayscale(0) contrast(1);
+  transform: scale(1.1);
+}
+
+.cardOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 60%);
+  z-index: 1;
   opacity: 0;
   transition: opacity 0.5s;
 }
 
-.card:hover .cardBg {
-  opacity: 0.05;
+.card:hover .cardOverlay {
+  opacity: 1;
 }
 
 .cardContent {
   position: relative;
-  z-index: 10;
-  transform: translateY(1rem);
-  transition: transform 0.5s;
+  z-index: 2;
+  transition: all 0.5s var(--transition-smooth);
 }
 
 .card:hover .cardContent {
-  transform: translateY(0);
-}
-
-.cardDesc {
-  font-family: var(--font-secondary);
-  /* Inter or monospace */
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  opacity: 0.5;
-  margin-bottom: 0.5rem;
-  display: block;
-}
-
-.cardTitle {
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  margin-bottom: 2rem;
-}
-
-.iconWrapper {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  /* Full rounded */
-  border: 1px solid var(--color-zinc-900);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s;
-  background-color: transparent;
-  color: var(--color-zinc-900);
-}
-
-.card:hover .iconWrapper {
-  background-color: var(--color-zinc-900);
   color: white;
 }
 
-.magneticWrapper {
-  opacity: 0;
-  transition: opacity 0.3s;
+.cardTag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: block;
+  opacity: 0.6;
 }
 
-.card:hover .magneticWrapper {
+.cardTitle {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  font-weight: 900;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: all 0.5s var(--transition-smooth);
+}
+
+.card:hover .cardFooter {
   opacity: 1;
+  transform: translateY(0);
+}
+
+.arrow {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -1,60 +1,154 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;600;900&family=JetBrains+Mono:wght@300;500&display=swap');
 
 :root {
-    /* Brand Tokens - Gateway Default */
-    --color-primary: #FAFAFA;
-    --color-accent: #111111;
-    --font-primary: 'Space Grotesk', sans-serif;
-    --font-secondary: 'Inter', sans-serif;
-    --radius-primary: 0px;
+    /* Dynamic Design Tokens */
+    --color-primary: #FF4D00;
+    --color-secondary: #2962FF;
+    --color-accent: #10B981;
+    --color-industrial: #FACC15;
 
-    /* Global Palette */
-    --color-zinc-50: #FAFAFA;
-    --color-zinc-900: #18181B;
-    --color-orange: #FF4D00;
-    --color-blue: #2962FF;
-    --color-green: #10B981;
-    --color-yellow: #FACC15;
+    --bg-color: #f8fafc;
+    --text-color: #0f172a;
+
+    --glass-bg: rgba(255, 255, 255, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --glass-blur: 20px;
+
+    --font-primary: 'Outfit', sans-serif;
+    --font-secondary: 'Inter', sans-serif;
+    --font-accent: 'Playfair Display', serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    --transition-smooth: cubic-bezier(0.76, 0, 0.24, 1);
+    --transition-warp: cubic-bezier(0.85, 0, 0.15, 1);
+
+    --noise-pattern: url('https://www.transparenttextures.com/patterns/p6.png');
 }
 
+/* Base Styles */
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box;
 }
 
 html,
 body {
-    width: 100%;
-    height: 100%;
-    background-color: var(--color-primary);
-    color: var(--color-accent);
-    font-family: var(--font-primary);
-    /* Liquid Context Transition */
-    transition: background-color 0.8s cubic-bezier(0.25, 1, 0.5, 1),
-        color 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    overflow-x: hidden;
+    font-family: var(--font-secondary);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.8s var(--transition-smooth), color 0.8s var(--transition-smooth);
 }
 
-/* Lenis recommended constraints */
-html.lenis,
-html.lenis body {
-    height: auto;
-}
-
-.lenis.lenis-smooth {
-    scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-    overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-    overflow: hidden;
-}
-
-.lenis.lenis-scrolling iframe {
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: var(--noise-pattern);
+    opacity: 0.03;
     pointer-events: none;
+    z-index: 1000;
+}
+
+/* Mesh Gradient Background */
+.mesh-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    filter: blur(80px);
+    opacity: 0.6;
+    pointer-events: none;
+    transition: all 1.2s var(--transition-smooth);
+}
+
+.mesh-circle-1 {
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 60vw;
+    height: 60vw;
+    background: var(--mesh-c1, var(--color-primary));
+    border-radius: 50%;
+    animation: float 20s infinite alternate linear;
+}
+
+.mesh-circle-2 {
+    position: absolute;
+    bottom: -20%;
+    left: -10%;
+    width: 50vw;
+    height: 50vw;
+    background: var(--mesh-c2, var(--color-secondary));
+    border-radius: 50%;
+    animation: float 15s infinite alternate-reverse linear;
+    opacity: 0.6;
+}
+
+@keyframes float {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+
+    to {
+        transform: translate(10%, 5%) scale(1.1);
+    }
+}
+
+/* Premium Typography */
+h1,
+h2,
+h3 {
+    font-family: var(--font-primary);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+}
+
+.text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-image: linear-gradient(to bottom right, var(--text-color), rgba(15, 23, 42, 0.4));
+}
+
+/* Cinematic Transitions */
+.warp-container {
+    overflow: hidden;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Industrial Patterns */
+.blueprint-grid {
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+/* Component Overrides */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }

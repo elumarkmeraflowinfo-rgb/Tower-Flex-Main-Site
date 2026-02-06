@@ -1,53 +1,104 @@
 .container {
-    max-width: 800px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 8rem 2rem 4rem;
-    color: var(--color-zinc-50);
-    background-color: var(--color-blue);
-    /* Fallback or contextual */
-    /* Context handles the background, but we can enforce text colors here */
+    padding: 12rem 4vw 8rem;
+    color: var(--text-color);
 }
 
 .header {
-    text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 8rem;
+    max-width: 900px;
 }
 
 .kicker {
+    font-family: var(--font-mono);
     text-transform: uppercase;
-    letter-spacing: 0.2em;
-    font-size: 0.875rem;
-    margin-bottom: 1rem;
+    letter-spacing: 0.3em;
+    font-size: 0.6rem;
+    margin-bottom: 2rem;
     display: block;
+    opacity: 0.5;
+    color: var(--color-primary);
 }
 
 .title {
-    font-family: var(--font-primary);
-    /* Playfair Display via Context */
-    font-size: 4rem;
-    line-height: 1.1;
-    margin-bottom: 1rem;
+    font-family: var(--font-accent);
+    /* Playfair Display */
+    font-size: clamp(4rem, 10vw, 8rem);
+    line-height: 0.9;
+    margin-bottom: 2rem;
+    font-weight: 700;
 }
 
 .meta {
-    opacity: 0.7;
-    font-family: var(--font-secondary);
+    font-size: 0.8rem;
+    opacity: 0.5;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.videoSection {
+    margin: 6rem 0;
+    position: relative;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 40px 100px -30px rgba(0, 0, 0, 0.1);
 }
 
 .article {
-    font-size: 1.125rem;
-    line-height: 1.6;
-    margin-top: 4rem;
+    margin-top: 8rem;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 4rem;
 }
 
-.article p {
-    margin-bottom: 1.5rem;
+@media (min-width: 1024px) {
+    .article {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.content {
+    font-size: 1.25rem;
+    line-height: 1.8;
+}
+
+.content p {
+    margin-bottom: 2rem;
 }
 
 .dropcap:first-letter {
     float: left;
-    font-size: 4rem;
+    font-size: 5rem;
     line-height: 0.8;
-    margin-right: 0.5rem;
-    font-weight: 700;
+    margin-right: 0.75rem;
+    font-weight: 900;
+    font-family: var(--font-accent);
+    color: var(--color-primary);
+}
+
+.sidebar {
+    padding: 3rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    height: fit-content;
+}
+
+.sidebarTitle {
+    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    margin-bottom: 2rem;
+    display: block;
+    opacity: 0.5;
+}
+
+.quote {
+    font-family: var(--font-accent);
+    font-size: 2rem;
+    font-style: italic;
+    line-height: 1.2;
+    margin-bottom: 2rem;
 }
